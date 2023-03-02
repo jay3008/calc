@@ -17,10 +17,6 @@
             width: max-content;
             box-shadow: 0px 0px 25px white;
             margin: auto;
-            
-            
-            /* display: inline-block; */
-            /* top: 50%; */
         }
         h3{
             text-align: right;
@@ -102,7 +98,7 @@
             let input = display.innerHTML.replace("x","*");
             let ans = eval(input);
             display.innerHTML = ans;
-            pre = ans;
+            pre = "";
         }
         else if(e.innerHTML == 'C'){
             display.innerHTML = 0;
