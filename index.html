@@ -108,41 +108,68 @@
       let display = document.getElementById("showans");
       let ans = 0;
       let pre = "";
+      let flag = 0;
         const btns = (e) =>{
-        if(e.innerHTML == '='){
-            let input = display.innerHTML.replace("x","*");
-            let ans = eval(input);
-            display.innerHTML = ans;
-            pre = "";
-        }
-        else if(e.innerHTML == 'C'){
-            display.innerHTML = 0;
-            pre = "";
-        }
-        else if(e.innerHTML == 'x<sup>2</sup>'){
-            console.log(display.innerHTML);
-            let ans = Number(display.innerHTML) * Number(display.innerHTML);
-            display.innerHTML = ans;
-            pre = "";
-        }
-        else if(e.innerHTML == '√'){
-            console.log(display.innerHTML);
-            let ans = Math.sqrt(Number(display.innerHTML));
-            display.innerHTML = ans;
-            pre = "";
-        }
-        else if(e.innerHTML == '1/x'){
-            console.log(display.innerHTML);
-            let ans = 1/Number(display.innerHTML);
-            display.innerHTML = ans;
-            pre = "";
-        }
-        else{
-            pre = pre + e.innerHTML;
-            display.innerHTML = pre;
-            console.log(display.innerHTML);
-            console.log(pre);
-        }
+            
+            if(e.innerHTML == '='){
+                let input = display.innerHTML.replace("x","*");
+                let ans = eval(input);
+                display.innerHTML = ans;
+                pre = "";
+            }
+            else if(e.innerHTML == 'C'){
+                display.innerHTML = 0;
+                pre = "";
+            }
+            else if(e.innerHTML == 'x<sup>2</sup>'){
+                console.log(display.innerHTML);
+                let ans = Number(display.innerHTML) * Number(display.innerHTML);
+                display.innerHTML = ans;
+                pre = "";
+            }
+            else if(e.innerHTML == '√'){
+                console.log(display.innerHTML);
+                let ans = Math.sqrt(Number(display.innerHTML));
+                display.innerHTML = ans;
+                pre = "";
+            }
+            else if(e.innerHTML == '1/x'){
+                console.log(display.innerHTML);
+                let ans = 1/Number(display.innerHTML);
+                display.innerHTML = ans;
+                pre = "";
+            }
+            else{
+                
+                if(e.innerHTML == '+' || e.innerHTML == '-' || e.innerHTML == 'x' || e.innerHTML == '/' || e.innerHTML == '.'){
+                    if(flag == 0){
+                        flag = 1;
+                        console.log("flag", flag);
+                        pre = pre + e.innerHTML;
+                        display.innerHTML = pre;
+                        console.log(display.innerHTML);
+                        console.log(pre);
+                    }
+                }
+                else{
+                    if(flag == 1){
+                        // alert("Add");
+                        pre = pre + e.innerHTML;
+                        display.innerHTML = pre;
+                        console.log(display.innerHTML);
+                        console.log(pre);
+                        flag = 0;
+                    }
+                    else{
+                        pre = pre + e.innerHTML;
+                        display.innerHTML = pre;
+                        console.log(display.innerHTML);
+                        console.log(pre);
+                        flag = 0;
+                    }
+                }
+                
+            }
       }
     </script>
 </body>
