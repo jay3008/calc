@@ -14,15 +14,19 @@
         }
         .main-container{
             background-color:rgba(0, 0, 0, 0.887);
-            width: max-content;
+            width: 340px;
             box-shadow: 0px 0px 25px white;
             margin: auto;
         }
+        /* #numberdisplay{
+            height: 50px;
+        } */
         h3{
             text-align: right;
             padding-right:20px;
             font-size: 36px;
-            overflow: hidden;
+            word-wrap: break-word;
+            border: 1px solid white;
         }
         h2{
             padding: 10px;
@@ -34,9 +38,12 @@
             padding: 3px;
         }
        .order-1{
-        order: -2;
+        order: -3;
        }
        .order-2{
+        order: -2;
+       }
+       .order-3{
         order: -1;
        }
        .row>button{
@@ -60,7 +67,9 @@
 <body>
     <div class="main-container">
         <h2>Calculator</h2>
-        <h3 id="showans">0</h3>
+        <div id="numberdisplay">
+            <h3 id="showans">0</h3>
+        </div>
         <div class="container">
             <div class="row">
                 <button onclick={btns(this)}>1</button>
@@ -68,22 +77,28 @@
                 <button onclick={btns(this)}>3</button>
                 <button onclick={btns(this)}>+</button>
             </div>
-            <div class="row order-2">
+            <div class="row order-3">
                 <button onclick={btns(this)}>4</button>
                 <button onclick={btns(this)}>5</button>
                 <button onclick={btns(this)}>6</button>
                 <button onclick={btns(this)}>-</button>
             </div>
-            <div class="row order-1">
+            <div class="row order-2">
                 <button onclick={btns(this)}>7</button>
                 <button onclick={btns(this)}>8</button>
                 <button onclick={btns(this)}>9</button>
                 <button onclick={btns(this)}>x</button>
             </div>
-            <div class="row">
+            <div class="row order-1">
+                <button onclick={btns(this)}>1/x</button>
+                <button onclick={btns(this)}>x<sup>2</sup></button>
+                <button onclick={btns(this)}>&#8730;</button>
                 <button onclick={btns(this)}>C</button>
-                <button onclick={btns(this)}>0</button>
+            </div>
+            <div class="row">
                 <button onclick={btns(this)}>.</button>
+                <button onclick={btns(this)}>0</button>
+                <button onclick={btns(this)}>/</button>
                 <button onclick={btns(this)}>=</button>
             </div>
         </div>
@@ -104,9 +119,29 @@
             display.innerHTML = 0;
             pre = "";
         }
+        else if(e.innerHTML == 'x<sup>2</sup>'){
+            console.log(display.innerHTML);
+            let ans = Number(display.innerHTML) * Number(display.innerHTML);
+            display.innerHTML = ans;
+            pre = "";
+        }
+        else if(e.innerHTML == '√'){
+            console.log(display.innerHTML);
+            let ans = Math.sqrt(Number(display.innerHTML));
+            display.innerHTML = ans;
+            pre = "";
+        }
+        else if(e.innerHTML == '1/x'){
+            console.log(display.innerHTML);
+            let ans = 1/Number(display.innerHTML);
+            display.innerHTML = ans;
+            pre = "";
+        }
         else{
             pre = pre + e.innerHTML;
             display.innerHTML = pre;
+            console.log(display.innerHTML);
+            console.log(pre);
         }
       }
     </script>
