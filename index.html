@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc</title>
+    <style>
+        *{
+            color: #fff;
+        }
+        body{
+            background-image: linear-gradient(to right, rgb(18, 4, 77), rgb(50, 50, 126));
+        }
+        .main-container{
+            background-color:rgba(0, 0, 0, 0.887);
+            width: max-content;
+            box-shadow: 0px 0px 25px white;
+            margin: auto;
+            
+            
+            /* display: inline-block; */
+            /* top: 50%; */
+        }
+        h3{
+            text-align: right;
+            padding-right:20px;
+            font-size: 36px;
+            overflow: hidden;
+        }
+        h2{
+            padding: 10px;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            width: max-content;
+            padding: 3px;
+        }
+       .order-1{
+        order: -2;
+       }
+       .order-2{
+        order: -1;
+       }
+       .row>button{
+        padding: 20px 30px;
+        cursor: pointer;
+        width: 80px;
+        font-size: 18px;
+        margin-top: 2px;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        background-color:transparent ;
+        transition: all 0.3s;
+       }
+       .row>button:hover{
+        background-color: rgb(0, 0, 0);
+        box-shadow: 0px 0px 10px 1px white;
+    }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h2>Calculator</h2>
+        <h3 id="showans">0</h3>
+        <div class="container">
+            <div class="row">
+                <button onclick={btns(this)}>1</button>
+                <button onclick={btns(this)}>2</button>
+                <button onclick={btns(this)}>3</button>
+                <button onclick={btns(this)}>+</button>
+            </div>
+            <div class="row order-2">
+                <button onclick={btns(this)}>4</button>
+                <button onclick={btns(this)}>5</button>
+                <button onclick={btns(this)}>6</button>
+                <button onclick={btns(this)}>-</button>
+            </div>
+            <div class="row order-1">
+                <button onclick={btns(this)}>7</button>
+                <button onclick={btns(this)}>8</button>
+                <button onclick={btns(this)}>9</button>
+                <button onclick={btns(this)}>x</button>
+            </div>
+            <div class="row">
+                <button onclick={btns(this)}>C</button>
+                <button onclick={btns(this)}>0</button>
+                <button onclick={btns(this)}>.</button>
+                <button onclick={btns(this)}>=</button>
+            </div>
+        </div>
+    </div>
+    <script>
+      const boxes = document.getElementsByTagName('button');
+      let display = document.getElementById("showans");
+      let ans = 0;
+      let pre = "";
+        const btns = (e) =>{
+        if(e.innerHTML == '='){
+            let input = display.innerHTML.replace("x","*");
+            let ans = eval(input);
+            display.innerHTML = ans;
+            pre = ans;
+        }
+        else if(e.innerHTML == 'C'){
+            display.innerHTML = 0;
+            pre = "";
+        }
+        else{
+            pre = pre + e.innerHTML;
+            display.innerHTML = pre;
+        }
+      }
+    </script>
+</body>
+</html>
