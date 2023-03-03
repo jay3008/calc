@@ -106,10 +106,31 @@
       let ans = 0;
       let pre = "";
       let flag = 0;
+      document.addEventListener('keydown',(e)=>{
+            if(e.key == 'Enter'){
+                console.log("Inside keyup..");
+                let input = display.innerHTML.replaceAll("x","*");
+                console.log('inside keyup input is ',input);
+                let ans = eval(input);
+                console.log("ans is ",ans);
+                display.innerHTML = ans;
+                pre = ans;
+                console.log("pre is ",pre);
+            }
+            else if(e.key == 'Escape'){
+                console.log("Inside keyup..");
+                display.innerHTML = 0;
+                pre = "";
+            }
+        })
+        
         const btns = (e) =>{
+            // document.addEventListener('keyup',(e)=>{
+            //     console.log(e.key);
+            // })
             
-            if(e.innerHTML == '='){
-                let input = display.innerHTML.replace("x","*");
+            if(e.innerHTML === '='){
+                let input = display.innerHTML.replaceAll("x","*");
                 let ans = eval(input);
                 display.innerHTML = ans;
                 pre = ans;
@@ -118,19 +139,19 @@
                 display.innerHTML = 0;
                 pre = "";
             }
-            else if(e.innerHTML == 'x<sup>2</sup>'){
+            else if(e.innerHTML == 'x<sup>2</sup>'  && flag == 0){
                 console.log(display.innerHTML);
                 let ans = Number(display.innerHTML) * Number(display.innerHTML);
                 display.innerHTML = ans;
                 pre = "";
             }
-            else if(e.innerHTML == '√'){
+            else if(e.innerHTML == '√'  && flag == 0){
                 console.log(display.innerHTML);
                 let ans = Math.sqrt(Number(display.innerHTML));
                 display.innerHTML = ans;
                 pre = "";
             }
-            else if(e.innerHTML == '1/x'){
+            else if(e.innerHTML == '1/x'  && flag == 0){
                 console.log(display.innerHTML);
                 let ans = 1/Number(display.innerHTML);
                 display.innerHTML = ans;
@@ -138,7 +159,7 @@
             }
             else{
                 
-                if(e.innerHTML == '+' || e.innerHTML == '-' || e.innerHTML == 'x' || e.innerHTML == '/' || e.innerHTML == '.'){
+                if(e.innerHTML == '+' || e.innerHTML == '-' || e.innerHTML == 'x' || e.innerHTML == '/' || e.innerHTML == '.' || e.innerHTML == 'x<sup>2</sup>' || e.innerHTML == '√' || e.innerHTML == '1/x'){
                     if(flag == 0){
                         flag = 1;
                         console.log("flag", flag);
@@ -158,9 +179,11 @@
                         flag = 0;
                     }
                     else{
+                        console.log('before pre ',pre);
+                        console.log('e.inner is ',e.innerHTML);
                         pre = pre + e.innerHTML;
                         display.innerHTML = pre;
-                        console.log(display.innerHTML);
+                        console.log("else ",display.innerHTML);
                         console.log(pre);
                         flag = 0;
                     }
